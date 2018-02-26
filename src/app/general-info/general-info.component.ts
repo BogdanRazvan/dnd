@@ -23,7 +23,7 @@ export class GeneralInfoComponent implements OnInit {
 
   componentParts = [
     ["class_level", "Class & Level", `${this.character.class} ${this.character.level}`],
-    ["name", "Name", this.character.playername],
+    ["name", "Player Name", this.character.playername],
     ["race", "Race", this.character.race],
     ["alignement", "Alignement", this.character.alignement == "neutral" ? 
       "neutral" : `${this.character.alignement[0]} ${this.character.alignement[1]}`],
