@@ -1,0 +1,7 @@
+<section>
+  <h1>Character Information</h1>
+  <div *ngFor="let cInfo of this.characterInforService.character; let i = index">
+    <span>{{cInfo[0]}}: </span>
+    <span id="class_level">{{cInfo[1]}}</span>
+  </div>
+</section>

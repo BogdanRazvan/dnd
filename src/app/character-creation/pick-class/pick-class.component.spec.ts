@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeneralInfoComponent } from './general-info.component';
+import { PickClassComponent } from './pick-class.component';
 
-describe('GeneralInfoComponent', () => {
-  let component: GeneralInfoComponent;
-  let fixture: ComponentFixture<GeneralInfoComponent>;
+describe('PickClassComponent', () => {
+  let component: PickClassComponent;
+  let fixture: ComponentFixture<PickClassComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneralInfoComponent ]
+      declarations: [ PickClassComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeneralInfoComponent);
+    fixture = TestBed.createComponent(PickClassComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

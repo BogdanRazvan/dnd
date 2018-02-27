@@ -3,21 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { GeneralInfoComponent } from './general-info/general-info.component';
-import { CharacterNameComponent } from './character-name/character-name.component';
+import { PickClassComponent } from './character-creation/pick-class/pick-class.component';
+import { CharacterInformationComponent } from './character-information/character-information.component';
+import { CharacterCreationComponent } from './character-creation/character-creation.component';
+
+import { CharacterUpdateInformationService } from './character-update-information.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GeneralInfoComponent,
-    CharacterNameComponent
+    PickClassComponent,
+    CharacterInformationComponent,
+    CharacterCreationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CharacterUpdateInformationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
