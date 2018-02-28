@@ -1,10 +1,9 @@
-// export interface GeneralInfo {
-//     charactername?: [string, string, string];
-//     class?: [string, string];
-//     level?: number;
-//     playername?: [string, string];
-//     race?: [string, string];
-//     background?: [string, string];
-//     alignement?: [string, string, string]|[string, string];
-//     experience?: number;
-// }
+export interface CharacterInformation {
+    cName: [string, string, string];
+    cClassLevel: [string, string, number];
+    pName: [string, string];
+    pRace: [string, string];
+    cBackground: [string, string];
+    cAlignement: [string, string, string]|[string, string];
+    cExperience: [string, number];
+}

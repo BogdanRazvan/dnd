@@ -1,6 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PickClassComponent } from './character-creation/pick-class/pick-class.component';
@@ -8,6 +10,7 @@ import { CharacterInformationComponent } from './character-information/character
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
 
 import { CharacterUpdateInformationService } from './character-update-information.service';
+import { CharacterDataFetchService } from './character-data-fetch.service';
 
 
 @NgModule({
@@ -19,9 +22,10 @@ import { CharacterUpdateInformationService } from './character-update-informatio
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [CharacterUpdateInformationService],
+  providers: [CharacterUpdateInformationService, CharacterDataFetchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
