@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterUpdateInformationService } from '../../character-update-information.service';
 import { CharacterDataFetchService } from '../../character-data-fetch.service';
-import { CharacterDetailsInterface } from '../../character-details-interface';
 
 @Component({
   selector: 'app-pick-class',
@@ -15,11 +14,11 @@ export class PickClassComponent implements OnInit {
     defaultCharacter: Object;
 
   ngOnInit() {
-    this.showConfig();
+    this.showCharacter();
   }
 
-  showConfig() {
-    this.characterDataFetchService.getCharacterInfo().subscribe(data => this.defaultCharacter = data);
+  showCharacter() {
+    this.characterDataFetchService.getCharacterInfo().subscribe(data => this.defaultCharacter = data['defaultClasses']);
   }
 
   getSelectedClass(item: string) {
