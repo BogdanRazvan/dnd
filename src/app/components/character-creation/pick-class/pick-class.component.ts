@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterUpdateInformationService } from '../../character-update-information.service';
-import { CharacterDataFetchService } from '../../character-data-fetch.service';
+import { CharacterUpdateInformationService } from '../../../services/character-update-information.service';
+import { CharacterDataFetchService } from '../../../services/character-data-fetch.service';
 
 @Component({
   selector: 'app-pick-class',
