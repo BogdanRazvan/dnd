@@ -12,17 +12,19 @@ export class PickClassComponent implements OnInit {
     private characterDataFetchService: CharacterDataFetchService) { }
 
     defaultCharacter: Object;
+    characterDescription: String = 'Barbarian';
 
   ngOnInit() {
     this.showCharacter();
   }
-
   showCharacter() {
-    this.characterDataFetchService.getCharacterInfo().subscribe(data => this.defaultCharacter = data['defaultClasses']);
+    this.characterDataFetchService.getCharacterInfo().subscribe(data =>
+      this.defaultCharacter = this.characterInforService.generateArray(data['defaultClasses']));
   }
 
   getSelectedClass(item: string) {
     this.characterInforService.updateItem(item);
+    this.characterDescription = item;
   }
 
 }

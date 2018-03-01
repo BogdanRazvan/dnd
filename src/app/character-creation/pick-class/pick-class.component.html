@@ -1,3 +1,6 @@
-<div *ngFor="let class of defaultCharacter">
-    <button (click)="getSelectedClass(class)">{{class}}</button>
+<div>
+    <div *ngFor="let class of defaultCharacter">
+        <button (click)="getSelectedClass(class.name)">{{class.name}}</button>
+        <div *ngIf="class.name == characterDescription">{{class.description}}</div>
+    </div>
 </div>
