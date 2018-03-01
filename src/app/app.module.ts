@@ -11,6 +11,9 @@ import { CharacterCreationComponent } from './components/character-creation/char
 
 import { CharacterUpdateInformationService } from './services/character-update-information.service';
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
+import { CharacterCreationNavigationComponent } from './components/character-creation/character-creation-navigation/character-creation-navigation.component';
+import { PickNameComponent } from './components/character-creation/pick-name/pick-name.component';
+import { CharacterNavigationService } from './services/character-navigation.service';
 
 
 @NgModule({
@@ -18,14 +21,20 @@ import { CharacterDataFetchService } from './services/character-data-fetch.servi
     AppComponent,
     PickClassComponent,
     CharacterInformationComponent,
-    CharacterCreationComponent
+    CharacterCreationComponent,
+    CharacterCreationNavigationComponent,
+    PickNameComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [CharacterUpdateInformationService, CharacterDataFetchService],
+  providers: [
+    CharacterUpdateInformationService,
+    CharacterDataFetchService,
+    CharacterNavigationService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

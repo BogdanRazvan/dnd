@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterNavigationService } from "../../services/character-navigation.service";
 
 @Component({
   selector: 'app-character-creation',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterCreationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private characterNavigationService: CharacterNavigationService) { }
 
   ngOnInit() {
   }

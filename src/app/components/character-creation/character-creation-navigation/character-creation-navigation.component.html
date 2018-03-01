@@ -1,0 +1,4 @@
+<section>
+  <input *ngIf="this.characterNavigationService.state" type="button" value="Back" (click)="previousPhase()">
+  <input *ngIf="this.characterNavigationService.state < 2" type="button" value="Next" (click)="nextPhase()">
+</section>
