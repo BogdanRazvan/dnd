@@ -12,7 +12,7 @@ export class PickClassComponent implements OnInit {
     private characterDataFetchService: CharacterDataFetchService) { }
 
     defaultCharacter: Object;
-    characterDescription: String = 'Barbarian';
+    characterClass: String = 'Barbarian';
 
   ngOnInit() {
     this.showCharacter();
@@ -24,7 +24,7 @@ export class PickClassComponent implements OnInit {
 
   getSelectedClass(item: string) {
     this.characterInforService.updateItem(item);
-    this.characterDescription = item;
+    this.characterClass = item;
   }
 
 }
