@@ -8,13 +8,14 @@ import { AppComponent } from './app.component';
 import { PickClassComponent } from './components/character-creation/pick-class/pick-class.component';
 import { CharacterInformationComponent } from './components/character-information/character-information.component';
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
+// tslint:disable-next-line:max-line-length
+import { CharacterCreationNavigationComponent } from './components/character-creation/character-creation-navigation/character-creation-navigation.component';
+import { PickNameComponent } from './components/character-creation/pick-name/pick-name.component';
 
 import { CharacterUpdateInformationService } from './services/character-update-information.service';
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
-import { CharacterCreationNavigationComponent } from './components/character-creation/character-creation-navigation/character-creation-navigation.component';
-import { PickNameComponent } from './components/character-creation/pick-name/pick-name.component';
 import { CharacterNavigationService } from './services/character-navigation.service';
-
+import { TechnicalMapObjectService } from './services/technical-map-object.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,9 @@ import { CharacterNavigationService } from './services/character-navigation.serv
   providers: [
     CharacterUpdateInformationService,
     CharacterDataFetchService,
-    CharacterNavigationService
-   ],
+    CharacterNavigationService,
+    TechnicalMapObjectService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

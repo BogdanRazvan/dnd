@@ -1,6 +1,6 @@
 <section>
   <h1>Character Information</h1>
-  <div *ngFor="let cInfo of this.characterInforService.generateArray(this.characterInforService.character); let i = index">
+  <div *ngFor="let cInfo of this.technicalMapObjectService.generateArray(this.characterInfoService.character);">
     <span>{{cInfo[0]}}: </span>
     <span id="class_level">{{cInfo[1]}}</span>
   </div>

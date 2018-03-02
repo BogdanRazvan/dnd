@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterNavigationService } from "../../services/character-navigation.service";
+import { CharacterNavigationService } from '../../services/character-navigation.service';
 
 @Component({
   selector: 'app-character-creation',

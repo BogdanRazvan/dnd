@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterUpdateInformationService } from '../../../services/character-update-information.service';
 
 @Component({
   selector: 'app-pick-name',
@@ -6,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickNameComponent implements OnInit {
 
-  constructor() {   }
+  constructor(private characterUpdateInformationService: CharacterUpdateInformationService) {   }
 
   ngOnInit() {
   }
-  backPhase() {
-    
+
+  getSelectedName(item) {
+    this.characterUpdateInformationService.updateName(item);
   }
 
 }

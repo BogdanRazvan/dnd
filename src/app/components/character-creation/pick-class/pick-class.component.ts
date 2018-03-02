@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterUpdateInformationService } from '../../../services/character-update-information.service';
+import { TechnicalMapObjectService } from '../../../services/technical-map-object.service';
 import { CharacterDataFetchService } from '../../../services/character-data-fetch.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { CharacterDataFetchService } from '../../../services/character-data-fetc
 })
 export class PickClassComponent implements OnInit {
 
-  constructor(private characterInforService: CharacterUpdateInformationService,
-    private characterDataFetchService: CharacterDataFetchService) { }
+  constructor(private characterInfoService: CharacterUpdateInformationService,
+    private characterDataFetchService: CharacterDataFetchService,
+    private technicalMapObjectService: TechnicalMapObjectService) { }
 
     defaultCharacter: Object;
     characterClass: String = 'Barbarian';
@@ -19,11 +21,11 @@ export class PickClassComponent implements OnInit {
   }
   showCharacter() {
     this.characterDataFetchService.getCharacterInfo().subscribe(data =>
-      this.defaultCharacter = this.characterInforService.generateArray(data['defaultClasses']));
+      this.defaultCharacter = this.technicalMapObjectService.generateArray(data['defaultClasses']));
   }
 
   getSelectedClass(item: string) {
-    this.characterInforService.updateItem(item);
+    this.characterInfoService.updateClass(item);
     this.characterClass = item;
   }
 

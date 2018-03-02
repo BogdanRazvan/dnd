@@ -16,12 +16,12 @@ export class CharacterUpdateInformationService {
   character = Object.assign({}, this.defaults);
   constructor() { }
 
-  generateArray(obj) {
-    return Object.keys(obj).map((key) => obj[key]);
+  updateClass(item: string) {
+    this.character.cClassLevel[1] = item;
   }
 
-  updateItem(item: string) {
-    this.character.cClassLevel[1] = item;
+  updateName(item: string) {
+    this.character.cName[1] = item;
   }
 
 }

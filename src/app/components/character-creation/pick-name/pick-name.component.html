@@ -1,2 +1,2 @@
 <label for="charName">Character Name:</label>
-<input id="charName" type="text" placeholder="Lyle">
+<input id="charName" type="text" (input)="getSelectedName($event.target.value)" value="{{this.characterUpdateInformationService.character.cName[1]}}">
