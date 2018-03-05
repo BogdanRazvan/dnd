@@ -1,8 +1,6 @@
 <div>
-    <div *ngFor="let class of this.characterDataFetchService.defaultClasses">
+    <div *ngFor="let class of defaultClassesValues">
         <input type="button" (click)="setSelectedClass($event.target.value)" value="{{class.name}}">
     </div>
-    <div *ngFor="let class of this.characterDataFetchService.defaultClasses">
-        <div *ngIf="class.name == currentClass">{{class.description}}</div>
-    </div>
+    <div>{{currentClassDescription}}</div>
 </div>

@@ -7,16 +7,11 @@ import { CharacterDataFetchService } from '../../../services/character-data-fetc
 })
 export class PickNameComponent implements OnInit {
   currentName: String;
+  currentInfo: Object;
   constructor(private characterDataFetchService: CharacterDataFetchService) {   }
 
   ngOnInit() {
-    this.characterDataFetchService.getCharacterInformation().add(() => {
-      this.currentName = this.characterDataFetchService.defaultInformation[1].value;
-    });
+    this.characterDataFetchService.getCharacterInformation().subscribe(result => 
+      this.currentInfo = result
+    )}
   }
-
-  setSelectedName(item: String) {
-    this.characterDataFetchService.defaultInformation[1].value = item;
-  }
-
-}

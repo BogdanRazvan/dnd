@@ -1,6 +1,6 @@
 <section>
   <h1>Character Information</h1>
-  <div *ngFor="let cInfo of this.characterDataFetchService.defaultInformation">
+  <div *ngFor="let cInfo of defaultInformationValues">
     <span>{{cInfo.key}}: </span>
     <span id="class_level">{{cInfo.value}}</span>
   </div>
