@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterUpdateInformationService } from '../../services/character-update-information.service';
-import { TechnicalMapObjectService } from '../../services/technical-map-object.service';
+import { CharacterDataFetchService } from '../../services/character-data-fetch.service';
 
 @Component({
   selector: 'app-character-information',
@@ -9,10 +8,11 @@ import { TechnicalMapObjectService } from '../../services/technical-map-object.s
 
 export class CharacterInformationComponent implements OnInit {
 
-  constructor(private characterInfoService: CharacterUpdateInformationService,
-    private technicalMapObjectService: TechnicalMapObjectService) { }
+  constructor(
+    private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
+    this.characterDataFetchService.getCharacterInformation();
   }
 
 }

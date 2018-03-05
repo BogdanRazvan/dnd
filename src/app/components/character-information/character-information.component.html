@@ -1,7 +1,7 @@
 <section>
   <h1>Character Information</h1>
-  <div *ngFor="let cInfo of this.technicalMapObjectService.generateArray(this.characterInfoService.character);">
-    <span>{{cInfo[0]}}: </span>
-    <span id="class_level">{{cInfo[1]}}</span>
+  <div *ngFor="let cInfo of this.characterDataFetchService.defaultInformation">
+    <span>{{cInfo.key}}: </span>
+    <span id="class_level">{{cInfo.value}}</span>
   </div>
 </section>

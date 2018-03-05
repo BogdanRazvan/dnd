@@ -1,5 +1,39 @@
 {
   "character": {
+    "defaultInformation": {
+      "cName": {
+        "key": "Character Name", 
+        "value": "Lyle Barrelbottom"
+      },
+      "cClass": {
+        "key": "Class", 
+        "value": "Fighter"
+      },
+      "cLevel": {
+        "key": "Level", 
+        "value": 1
+      },
+      "pName": {
+        "key": "Player Name", 
+        "value": "Razvan"
+      },
+      "cBackground": {
+        "key": "Background", 
+        "value": "Noble"
+      },
+      "pRace": {
+        "key": "Race", 
+        "value": "Human"
+      },
+      "cAlignement": {
+        "key": "Alignemnet", 
+        "value": ["Noble", "Good"]
+      },
+      "cExperience": {
+        "key": "Experience", 
+        "value": 0
+      }
+    },
     "defaultClasses": {
       "barbarian": {
         "name": "Barbarian",

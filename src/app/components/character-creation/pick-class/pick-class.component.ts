@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterUpdateInformationService } from '../../../services/character-update-information.service';
+
 import { TechnicalMapObjectService } from '../../../services/technical-map-object.service';
 import { CharacterDataFetchService } from '../../../services/character-data-fetch.service';
 
@@ -8,25 +8,21 @@ import { CharacterDataFetchService } from '../../../services/character-data-fetc
   templateUrl: './pick-class.component.html'
 })
 export class PickClassComponent implements OnInit {
-
-  constructor(private characterInfoService: CharacterUpdateInformationService,
+  currentClass: String;
+  constructor(
     private characterDataFetchService: CharacterDataFetchService,
     private technicalMapObjectService: TechnicalMapObjectService) { }
 
-    defaultCharacter: Object;
-    characterClass: String = 'Barbarian';
-
   ngOnInit() {
-    this.showCharacter();
-  }
-  showCharacter() {
-    this.characterDataFetchService.getCharacterInfo().subscribe(data =>
-      this.defaultCharacter = this.technicalMapObjectService.generateArray(data['defaultClasses']));
+    this.characterDataFetchService.getCharacterClass();
+    this.characterDataFetchService.getCharacterInformation().add(() => {
+      this.currentClass = this.characterDataFetchService.defaultInformation[1].value;
+    });
   }
 
-  getSelectedClass(item: string) {
-    this.characterInfoService.updateClass(item);
-    this.characterClass = item;
+  setSelectedClass(item: string) {
+    this.characterDataFetchService.defaultInformation[1].value = item;
+    this.currentClass = item;
   }
 
 }

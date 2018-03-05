@@ -12,7 +12,6 @@ import { CharacterCreationComponent } from './components/character-creation/char
 import { CharacterCreationNavigationComponent } from './components/character-creation/character-creation-navigation/character-creation-navigation.component';
 import { PickNameComponent } from './components/character-creation/pick-name/pick-name.component';
 
-import { CharacterUpdateInformationService } from './services/character-update-information.service';
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
 import { CharacterNavigationService } from './services/character-navigation.service';
 import { TechnicalMapObjectService } from './services/technical-map-object.service';
@@ -32,7 +31,6 @@ import { TechnicalMapObjectService } from './services/technical-map-object.servi
     HttpClientModule
   ],
   providers: [
-    CharacterUpdateInformationService,
     CharacterDataFetchService,
     CharacterNavigationService,
     TechnicalMapObjectService

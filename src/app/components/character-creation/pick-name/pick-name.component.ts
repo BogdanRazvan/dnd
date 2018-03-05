@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterUpdateInformationService } from '../../../services/character-update-information.service';
+import { CharacterDataFetchService } from '../../../services/character-data-fetch.service';
 
 @Component({
   selector: 'app-pick-name',
   templateUrl: './pick-name.component.html'
 })
 export class PickNameComponent implements OnInit {
-
-  constructor(private characterUpdateInformationService: CharacterUpdateInformationService) {   }
+  currentName: String;
+  constructor(private characterDataFetchService: CharacterDataFetchService) {   }
 
   ngOnInit() {
+    this.characterDataFetchService.getCharacterInformation().add(() => {
+      this.currentName = this.characterDataFetchService.defaultInformation[1].value;
+    });
   }
 
-  getSelectedName(item) {
-    this.characterUpdateInformationService.updateName(item);
+  setSelectedName(item: String) {
+    this.characterDataFetchService.defaultInformation[1].value = item;
   }
 
 }
