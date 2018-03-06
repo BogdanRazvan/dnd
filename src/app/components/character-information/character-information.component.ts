@@ -8,13 +8,13 @@ import { CharacterDataFetchService } from '../../services/character-data-fetch.s
 
 export class CharacterInformationComponent implements OnInit {
 
-  defaultInformationValues: Object;
+  currentInfo;
+
   constructor(
     private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
-    this.characterDataFetchService.getCharacterInformation().subscribe(
-      result => this.defaultInformationValues = Object.values(result["defaultInformation"]));
+    this.characterDataFetchService.getDefaultInformation();
   }
 
 }

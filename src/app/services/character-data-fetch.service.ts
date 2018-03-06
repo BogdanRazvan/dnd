@@ -4,20 +4,25 @@ import { CharacterDataFetch } from "./character-data-fetch";
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-
-import { TechnicalMapObjectService } from './technical-map-object.service';
 import { Subscriber } from 'rxjs/Subscriber';
 
 @Injectable()
 export class CharacterDataFetchService {
-
   private serviceUrl = 'http://localhost:4200/character';
-  public defaultInformation: Object;
-  public defaultClasses: Object;
+  public currentInformation;
+  public currentClasses;
 
-  constructor(private http: HttpClient, private technicalMapObjectService: TechnicalMapObjectService) { }
+  constructor(private http: HttpClient) { }
 
-  public getCharacterInformation(): Observable<Object> {
-    return this.http.get(this.serviceUrl)
+  public getDefaultInformation() {
+    return this.http.get(this.serviceUrl).subscribe(result =>
+        this.currentInformation = Object.values(result["defaultInformation"])
+    );
+  };
+
+  public getDefaultClasses() {
+    return this.http.get(this.serviceUrl).subscribe(result =>
+        this.currentClasses = Object.values(result["defaultClasses"])
+    );
   };
 }

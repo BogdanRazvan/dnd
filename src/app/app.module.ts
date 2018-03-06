@@ -14,7 +14,6 @@ import { PickNameComponent } from './components/character-creation/pick-name/pic
 
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
 import { CharacterNavigationService } from './services/character-navigation.service';
-import { TechnicalMapObjectService } from './services/technical-map-object.service';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { TechnicalMapObjectService } from './services/technical-map-object.servi
   ],
   providers: [
     CharacterDataFetchService,
-    CharacterNavigationService,
-    TechnicalMapObjectService
+    CharacterNavigationService
   ],
   bootstrap: [AppComponent]
 })
