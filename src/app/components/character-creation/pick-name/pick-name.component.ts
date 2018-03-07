@@ -12,12 +12,10 @@ export class PickNameComponent implements OnInit {
   constructor(private characterDataFetchService: CharacterDataFetchService) {   }
 
   ngOnInit() {
-    this.characterDataFetchService.getDefaultInformation().add(() => {
-      this.value = this.characterDataFetchService.currentInformation[0].value;
-    });
+
   }
 
   setSelectedName(item: String) {
-    this.characterDataFetchService.currentInformation[0].value = item; 
+
   }
 }

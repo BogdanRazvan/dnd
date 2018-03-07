@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CharacterDataFetch } from "./character-data-fetch";
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 import { Subscriber } from 'rxjs/Subscriber';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Injectable()
 export class CharacterDataFetchService {
   private serviceUrl = 'http://localhost:4200/character';
-  public currentInformation;
-  public currentClasses;
+  public currentClasss;
 
   constructor(private http: HttpClient) { }
 
-  public getDefaultInformation() {
-    return this.http.get(this.serviceUrl).subscribe(result =>
-        this.currentInformation = Object.values(result["defaultInformation"])
-    );
-  };
+  currentInformation = new BehaviorSubject([]);
+  currentInformationObs = this.currentInformation.asObservable();
 
-  public getDefaultClasses() {
-    return this.http.get(this.serviceUrl).subscribe(result =>
-        this.currentClasses = Object.values(result["defaultClasses"])
-    );
-  };
+  updateInfo(info) {
+    this.currentInformation.next(info);
+  }
+
+  public getInfo() {
+    return this.http.get(this.serviceUrl)
+  }
 }
