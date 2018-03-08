@@ -1,4 +1,4 @@
 <section>
-  <input *ngIf="this.characterNavigationService.state" type="button" value="Back" (click)="previousPhase()">
-  <input *ngIf="this.characterNavigationService.state < 3" type="button" value="Next" (click)="nextPhase()">
+  <input *ngIf="this.characterNavigationService.state !== 0" type="button" value="Back" (click)="previousPhase()">
+  <input *ngIf="this.characterNavigationService.state < this.characterNavigationService.stateLength" type="button" value="Next" (click)="nextPhase()">
 </section>
