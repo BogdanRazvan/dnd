@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickNameComponent } from './pick-name.component';
+import { PickNameLevelComponent } from './pick-name-level.component';
 
 describe('PickNameComponent', () => {
-  let component: PickNameComponent;
-  let fixture: ComponentFixture<PickNameComponent>;
+  let component: PickNameLevelComponent;
+  let fixture: ComponentFixture<PickNameLevelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickNameComponent ]
+      declarations: [ PickNameLevelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PickNameComponent);
+    fixture = TestBed.createComponent(PickNameLevelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

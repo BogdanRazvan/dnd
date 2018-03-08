@@ -1,8 +1,8 @@
 <div>
-    <div *ngFor="let class of currentClasses">
-        <input type="button" (click)="updateInfo($event.target.value)" value="{{class.name}}">
+    <div *ngFor="let class of currentClassesTpl">
+        <input type="button" (mouseup)="updateInfo($event.target.value)" value="{{class.name}}">
     </div>
-    <div *ngFor="let class of currentClasses">
+    <div *ngFor="let class of currentClassesTpl">
        <div *ngIf="class.name == currentClass">{{class.description}}</div>
     </div>
 </div>

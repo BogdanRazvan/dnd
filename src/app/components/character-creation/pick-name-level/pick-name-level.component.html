@@ -1,0 +1,4 @@
+<label for="charName">Character Name:</label>
+<input id="charName" type="text" (input)="setSelectedName($event.target.value)" [value]="cName">
+<label for="charLevel">Character Level:</label>
+<input id="charLevel" type="text" (input)="setSelectedLevel($event.target.value)" [value]="cLevel">

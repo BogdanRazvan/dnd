@@ -1,6 +1,7 @@
 <section>
   <h1>Character Creation</h1>
-  <app-pick-name [hidden]="this.characterNavigationService.state !== 0"></app-pick-name>
+  <app-pick-name-level [hidden]="this.characterNavigationService.state !== 0"></app-pick-name-level>
   <app-pick-class [hidden]="this.characterNavigationService.state !== 1"></app-pick-class>
+  <app-pick-background ></app-pick-background>
   <app-character-creation-navigation></app-character-creation-navigation>
 </section>

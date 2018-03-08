@@ -5,9 +5,9 @@ import { CharacterDataFetchService } from './services/character-data-fetch.servi
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor(private characterDataFetchService: CharacterDataFetchService){};
+  constructor(private characterDataFetchService: CharacterDataFetchService) {}
   ngOnInit() {
   }
 

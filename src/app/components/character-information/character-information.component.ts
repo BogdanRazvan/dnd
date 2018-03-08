@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subscriber } from 'rxjs/Subscriber';
+import { Subscription } from 'rxjs/Subscription';
+
 import { CharacterDataFetchService } from '../../services/character-data-fetch.service';
+import { CharacterInfo } from '../../interfaces/character-info';
 
 @Component({
   selector: 'app-character-information',
@@ -8,23 +13,26 @@ import { CharacterDataFetchService } from '../../services/character-data-fetch.s
 
 export class CharacterInformationComponent implements OnInit, OnDestroy {
 
-  characterInformation; sub;
+  private characterInformation: Array<CharacterInfo>;
+  private subscriptionCharacterInfo: Subscription;
+  private subscriptionCharacterUpdate: Subscription;
 
   constructor(
     private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
-    this.sub = this.characterDataFetchService.getInfo().subscribe(
+    this.subscriptionCharacterInfo = this.characterDataFetchService.getInfo().subscribe(
       data => this.characterInformation = Object.values(data['defaultInformation'])
-    )
+    );
 
-    this.characterDataFetchService.currentInformationObs.subscribe(
-      data => this.characterInformation = data
-    )
+    this.subscriptionCharacterUpdate = this.characterDataFetchService.currentInformationObs.subscribe(
+      data => this.characterInformation = Object.values(data)
+    );
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.subscriptionCharacterInfo.unsubscribe();
+    this.subscriptionCharacterUpdate.unsubscribe();
   }
 
 }

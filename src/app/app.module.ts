@@ -10,10 +10,11 @@ import { CharacterInformationComponent } from './components/character-informatio
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 // tslint:disable-next-line:max-line-length
 import { CharacterCreationNavigationComponent } from './components/character-creation/character-creation-navigation/character-creation-navigation.component';
-import { PickNameComponent } from './components/character-creation/pick-name/pick-name.component';
+import { PickNameLevelComponent } from './components/character-creation/pick-name-level/pick-name-level.component';
 
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
 import { CharacterNavigationService } from './services/character-navigation.service';
+import { PickBackgroundComponent } from './components/character-creation/pick-background/pick-background.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CharacterNavigationService } from './services/character-navigation.serv
     CharacterInformationComponent,
     CharacterCreationComponent,
     CharacterCreationNavigationComponent,
-    PickNameComponent
+    PickNameLevelComponent,
+    PickBackgroundComponent
   ],
   imports: [
     BrowserModule,
