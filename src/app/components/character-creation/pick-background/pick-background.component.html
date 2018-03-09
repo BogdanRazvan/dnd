@@ -1,3 +1,8 @@
-<p>
-  pick-background works!
-</p>
+<div>
+  <div *ngFor="let background of currentBackgroundsTpl">
+      <input type="button" (mouseup)="updateInfo($event.target.value)" value="{{background.name}}">
+  </div>
+  <div *ngFor="let background of currentBackgroundsTpl">
+     <div *ngIf="background.name == currentBackground">{{background.overview}}</div>
+  </div>
+</div>

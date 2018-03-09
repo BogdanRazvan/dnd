@@ -40,12 +40,12 @@ export class PickNameLevelComponent implements OnInit, OnDestroy {
   setSelectedName(item: String) {
     this.characterInformation.cName.value = item ? item : this.characterInformationCopy.cName.value;
     this.cLevel = this.characterInformation.cLevel.value;
-    this.characterDataFetchService.updateInfo(this.characterInformation);
+    this.characterDataFetchService.updateNameInfo(this.characterInformation);
   }
 
   setSelectedLevel(item: Number) {
     this.characterInformation.cLevel.value = item ? item : this.characterInformationCopy.cLevel.value;
-    this.characterDataFetchService.updateInfo(this.characterInformation);
+    this.characterDataFetchService.updateLevelInfo(this.characterInformation);
   }
 
   ngOnDestroy() {

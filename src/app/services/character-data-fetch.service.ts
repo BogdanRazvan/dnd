@@ -20,8 +20,20 @@ export class CharacterDataFetchService {
   currentInformation = new BehaviorSubject([]);
   currentInformationObs = this.currentInformation.asObservable();
 
-  public updateInfo(info) {
-    this.currentInformation.next(info);
+  public updateLevelInfo(info) {
+    this.currentInformation.next(info.cLevel);
+  }
+
+  public updateNameInfo(info) {
+    this.currentInformation.next(info.cName);
+  }
+
+  public updateClassInfo(info) {
+    this.currentInformation.next(info.cClass);
+  }
+
+  public updateBackgroundInfo(info) {
+    this.currentInformation.next(info.cBackground);
   }
 
   public getInfo() {

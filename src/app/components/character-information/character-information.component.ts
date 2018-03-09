@@ -13,20 +13,42 @@ import { CharacterInfo } from '../../interfaces/character-info';
 
 export class CharacterInformationComponent implements OnInit, OnDestroy {
 
-  private characterInformation: Array<CharacterInfo>;
   private subscriptionCharacterInfo: Subscription;
   private subscriptionCharacterUpdate: Subscription;
+
+  private characterInformation: any;
+  private characterInformationTpl: any;
 
   constructor(
     private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
     this.subscriptionCharacterInfo = this.characterDataFetchService.getInfo().subscribe(
-      data => this.characterInformation = Object.values(data['defaultInformation'])
+      data => {
+        this.characterInformation = data['defaultInformation'];
+        this.characterInformationTpl = Object.values(data['defaultInformation']);
+      }
     );
 
     this.subscriptionCharacterUpdate = this.characterDataFetchService.currentInformationObs.subscribe(
-      data => this.characterInformation = Object.values(data)
+      (data: any) => {
+        if (Object.keys(data).length) {
+          switch (data.key) {
+            case 'Level':
+              this.characterInformationTpl[1] = data;
+            break;
+            case 'Class':
+              this.characterInformationTpl[2] = data;
+            break;
+            case 'Character Name':
+             this.characterInformationTpl[0] = data;
+            break;
+            case 'Background':
+            this.characterInformationTpl[3] = data;
+           break;
+          }
+        }
+      }
     );
   }
 

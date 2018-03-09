@@ -3,14 +3,13 @@
 **/
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PropertyRead } from '@angular/compiler';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { CharacterDataFetchService } from '../../../services/character-data-fetch.service';
 import { CharacterDataFetch } from '../../../interfaces/character-data-fetch';
 import { CharacterInfo } from '../../../interfaces/character-info';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-pick-class',
@@ -21,7 +20,7 @@ export class PickClassComponent implements OnInit, OnDestroy {
   private currentClasses: CharacterDataFetch;
   private currentClassesTpl: Array<CharacterDataFetch>;
   private currentInformation: CharacterInfo;
-  private currentInformationTpl: Array<CharacterInfo>;
+  private currentInformationTpl: any;
   private currentClass: String;
 
   private classSubscription: Subscription;
@@ -31,13 +30,6 @@ export class PickClassComponent implements OnInit, OnDestroy {
   constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
-    this.classSubscription = this.characterDataFetchService.getInfo().subscribe(
-      data => {
-        this.currentClasses = data['defaultClasses'];
-        this.currentClassesTpl = Object.values(this.currentClasses);
-      }
-    );
-
     this.infoSubscription = this.characterDataFetchService.getInfo().subscribe(
       data => {
         this.currentInformation = data['defaultInformation'];
@@ -47,13 +39,24 @@ export class PickClassComponent implements OnInit, OnDestroy {
     );
 
     this.infoUpdateSubscription = this.characterDataFetchService.currentInformationObs.subscribe(
-      data => this.currentInformationTpl = data
+      data => {
+        if (Object.keys(data).length) {
+          this.currentInformationTpl[1] = data;
+        }
+      }
+    );
+
+    this.classSubscription = this.characterDataFetchService.getInfo().subscribe(
+      data => {
+        this.currentClasses = data['defaultClasses'];
+        this.currentClassesTpl = Object.values(this.currentClasses);
+      }
     );
   }
 
   private updateInfo(value) {
     this.currentInformation.cClass.value = this.currentClass = value;
-    this.characterDataFetchService.updateInfo(this.currentInformation);
+    this.characterDataFetchService.updateClassInfo(this.currentInformation);
   }
 
   ngOnDestroy() {
