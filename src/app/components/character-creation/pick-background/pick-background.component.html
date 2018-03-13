@@ -3,6 +3,92 @@
       <input type="button" (mouseup)="updateInfo($event.target.value)" value="{{background.name}}">
   </div>
   <div *ngFor="let background of currentBackgroundsTpl">
-     <div *ngIf="background.name == currentBackground">{{background.overview}}</div>
+     <div *ngIf="background.name == currentBackground">
+       Overview: {{background.overview || "none"}}
+      
+      <!-- Skills -->
+      <div>
+        <div>Skills Proficiencies: 
+          <span *ngFor="let skill of background.skills.skillProficiencies">
+              {{skill || "none"}}
+          </span>
+        </div>
+        <div *ngIf="background.skills.toolProficiencies">
+          Tools Proficiencies: 
+          <ol *ngFor="let tools of background.skills.toolProficiencies">
+              <li *ngFor="let singleTool of tools">
+                {{singleTool}}
+              </li>
+            </ol>
+        </div>
+        <div>
+          <span *ngFor="let language of background.skills.languages; let i = index">
+            <span *ngIf="i == 0">Languages: {{language}} of your choice</span>
+            <span *ngIf="i == 1">Plus</span>
+            <span *ngIf="i != 0">{{language}}</span>
+          </span>
+        </div>
+        <div>Equipment:  {{background.skills.equipment || "none"}}</div>
+        <div>Gold:  {{background.skills.gold || 0}}</div>
+      </div>
+
+      <!-- Traits -->
+      <div>
+        <div *ngIf="background.traits">
+            <div>Trait: {{background.traits.name || "No special traits"}}</div>
+            <div *ngIf="background.traits.trait">
+              <div>Trait name: {{background.traits.trait.name}}</div>
+              <div>                  
+                <span>Trait list:</span>
+                <span *ngFor="let traitInfo of background.traits.trait.traits">
+                  {{traitInfo}}
+                </span></div>
+            </div>
+            <div *ngIf="background.traits.item">
+                <div>Item name: {{background.traits.item.name}}</div>
+                <div>                  
+                  <span>Item list:</span>
+                  <span *ngFor="let itemInfo of background.traits.item.items">
+                    {{itemInfo}}
+                  </span></div>
+              </div>
+        </div>
+      </div>
+
+      <!-- Feature -->
+      <div>      
+        <div>Feature: {{background.feature.name || "none"}}</div>
+        <div>{{background.feature.description}}</div>
+      </div>
+
+      <!-- Characteristics -->
+      <div>
+        <div>Characteristics: {{background.characteristics.description}}</div>
+        <div>
+          Personality: 
+          <div *ngFor="let personality of background.characteristics.traits.personality; let i = index">
+            {{i+1}}: {{personality}}
+          </div>
+        </div>
+        <div>
+          Ideals: 
+          <div *ngFor="let ideal of background.characteristics.traits.ideals; let i = index">
+            {{i+1}}: {{ideal}}
+          </div>
+        </div>
+        <div>
+          Bond: 
+          <div *ngFor="let bond of background.characteristics.traits.bond; let i = index">
+            {{i+1}}: {{bond}}
+          </div>
+        </div>
+        <div>
+          Flaws: 
+          <div *ngFor="let flaw of background.characteristics.traits.flaw; let i = index">
+            {{i+1}}: {{flaw}}
+          </div>
+        </div>
+
+    </div>
   </div>
 </div>

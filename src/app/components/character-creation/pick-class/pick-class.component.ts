@@ -56,7 +56,7 @@ export class PickClassComponent implements OnInit, OnDestroy {
 
   private updateInfo(value) {
     this.currentInformation.cClass.value = this.currentClass = value;
-    this.characterDataFetchService.updateClassInfo(this.currentInformation);
+    this.characterDataFetchService.updateInfo(this.currentInformation.cClass);
   }
 
   ngOnDestroy() {

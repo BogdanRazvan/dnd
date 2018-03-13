@@ -48,7 +48,7 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
 
   private updateInfo(value) {
     this.currentInformation.cBackground.value = this.currentBackground = value;
-    this.characterDataFetchService.updateBackgroundInfo(this.currentInformation);
+    this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
   }
 
   ngOnDestroy() {

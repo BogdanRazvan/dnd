@@ -143,7 +143,7 @@
           "gold": 10
         },
         "traits": {
-          "Name": "Culture",
+          "name": "Cultural Chameleon",
           "description": "Before becoming an adventurer, you spent much of your adult life away from your homeland, living among people different from your kin. You came to understand these foreign cultures and the ways of their people, who eventually treated you as one of their own. One culture had more of an influence on you than any other, shaping your beliefs and customs. Choose a race whose culture you've adopted, or roll on the Adopted Culture table.",
           "trait": {
             "name": "Culture",
@@ -198,13 +198,13 @@
         "overview": "An archaeologist learns about the long-lost and fallen cultures of the past by studying their remains-their bones, their ruins, their surviving masterworks, and their tombs. Those who practice archaeology travel to the far corners of the world to root through crumbled cities and lost dungeons, digging in search of artifacts that might tell the stories of monarchs and high priests, wars and cataclysms.",
         "skills": {
           "skillProficiencies": ["History", "Survival"],
-          "toolProficiencies": ["Cartographer's tools", "Navigator's tools"],
+          "toolProficiencies": [["Cartographer's tools", "Navigator's tools"]],
           "languages": [1],
           "equipment": "A wooden case containing a map to a ruin or dungeon, a bullseye lantern, a miner's pick, a set of traveler's clothes, a shovel, a two-person tent, a trinket recovered from a dig site, and a pouch containing 25 gp",
           "gold": 25
         },
         "traits": {
-          "Name": "Dust Digger",
+          "name": "Dust Digger",
           "description": "Prior to becoming an adventurer, you spent most of your young life crawling around in the dust, pilfering relics of questionable value from crypts and ruins. Though you managed to sell a few of your discoveries and earn enough coin to buy proper adventuring gear, you have held onto an item that has great emotional value to you. Roll on the Signature Item table to see what you have, or choose an item from the table.",
           "item": {
             "name": "Item",
@@ -263,7 +263,7 @@
           "skillProficiencies": ["Deception", "Insight"],
           "toolProficiencies": [["Disguise Kit"], ["Artisan's Tools", "Gaming Set"]],
           "equipment": "Disguise kit, common clothes, a Tears of Virulence emblem, a writ of free agency signed by the Lord Regent, a set of artisan’s tools or gaming set you are proficient with, and a pouch with 15 gp (payment for services rendered).",
-          "lyfestyle": "Moderate"
+          "gold": 15
         },
         "feature": {
           "name": "Double Agent",
@@ -315,16 +315,16 @@
         "overview": "You have always had a way with people.You know what makes them tick, you can tease out their heart’s desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books. It’s a useful talent, and one that you’re perfectly willing to use for your advantage. You know what people want and you deliver, or rather, you promise to deliver. Common sense should steer people away from things that sound too good to be true, but common sense seems to be in short supply when you’re around. The bottle of pink coloured liquid will surely cure that unseemly rash, this ointment—nothing more than a bit of fat with a sprinkle of silver dust—can restore youth and vigor, and there’s a bridge in the city that just happens to be for sale. These marvels sound implausible, but you make them sound like the real deal.",
         "skills": {
           "skillProficiencies": ["Deception", "Sleight of Hand"],
-          "toolProficiencies": ["Disguise Kit", "Forgery Kit"],
+          "toolProficiencies": [["Disguise Kit", "Forgery Kit"]],
           "equipment": "A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke), and a belt pouch containing 15 gp",
           "gold": 15
         },
         "traits": {
-          "Name": "Favorite Schemes",
+          "name": "Favorite Schemes",
           "description": "Every charlatan has an angle they use in preference to other schemes. Choose a favorite scam or roll on the table below.",
           "trait": {
             "name": "Scam",
-            "trait": [
+            "traits": [
               "I cheat at games involving chance.",
               "I shave coins or forge documents.",
               "I insinuate myself into people’s lives to prey on their weakness and secure their fortunes.",
@@ -389,9 +389,9 @@
           "gold": 15
         },
         "traits": {
-          "Name": "Criminal Specialty",
+          "name": "Criminal Specialty",
           "description": "There are many kinds of criminals, and within a thieves guild or similar criminal organization, individual members have particular specialties. Even criminals who operate outside of such organizations have strong preferences for certain kinds of crimes over others. Choose the role you played in your criminal life, or roll on the table below.",
-          "item": {
+          "trait": {
             "name": "Specialty",
             "traits": ["Blackmailer", "Burglar", "Enforcer", "Fence", "Highway Robber", "Hired Killer", "Pickpocket", "Smuggler"]
           }
