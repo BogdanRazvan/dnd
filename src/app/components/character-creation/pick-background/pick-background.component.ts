@@ -23,6 +23,13 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private infoUpdateSubscription: Subscription;
   private backgroundSubscription: Subscription;
 
+  private displayItems: Object = {
+    'personality': false,
+    'ideals': false,
+    'bonds': false,
+    'flaws': false,
+  };
+
   constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
@@ -49,6 +56,11 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private updateInfo(value) {
     this.currentInformation.cBackground.value = this.currentBackground = value;
     this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
+  }
+
+  private showHideItems(eventValue) {
+    eventValue = eventValue.toLowerCase();
+    this.displayItems[eventValue] = !this.displayItems[eventValue];
   }
 
   ngOnDestroy() {
