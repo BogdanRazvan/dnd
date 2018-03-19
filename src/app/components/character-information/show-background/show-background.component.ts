@@ -6,10 +6,12 @@ import { CharacterDataFetchService } from '../../../services/character-data-fetc
 import { CharacterInfo } from '../../../interfaces/character-info';
 
 @Component({
-  selector: 'app-pick-background',
-  templateUrl: './pick-background.component.html'
+  selector: 'app-show-background',
+  templateUrl: './show-background.component.html'
 })
-export class PickBackgroundComponent implements OnInit, OnDestroy {
+export class ShowBackgroundComponent implements OnInit, OnDestroy {
+
+  constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
   private currentInformation: CharacterInfo;
   private currentInformationTpl: Array<CharacterInfo>;
@@ -22,15 +24,12 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private infoUpdateSubscription: Subscription;
   private backgroundSubscription: Subscription;
 
-  private displayTools: [Boolean] = [true];
-  private displayCharacteristics: Object = {
+  private displayItems: Object = {
     'personality': false,
     'ideals': false,
     'bonds': false,
     'flaws': false,
   };
-
-  constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
   ngOnInit() {
     this.infoSubscription = this.characterDataFetchService.getInfo().subscribe(
@@ -49,23 +48,8 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
       data => {
         this.currentBackgrounds = data['defaultBackgrounds'];
         this.currentBackgroundsTpl = Object.values(this.currentBackgrounds);
-      },
+      }
     );
-  }
-
-  private updateInfo(value) {
-    this.currentInformation.cBackground.value = this.currentBackground = value;
-    this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
-  }
-
-  private showHideCharacteristics(eventValue) {
-    eventValue = eventValue.toLowerCase();
-    this.displayCharacteristics[eventValue] = !this.displayCharacteristics[eventValue];
-  }
-
-  private showHideTraits(eventValue, index) {
-    if (!this.displayTools[index]) { this.displayTools[index] = false; }
-    this.displayTools[index] = !this.displayTools[index];
   }
 
   ngOnDestroy() {

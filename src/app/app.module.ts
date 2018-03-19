@@ -15,6 +15,7 @@ import { PickNameLevelComponent } from './components/character-creation/pick-nam
 import { CharacterDataFetchService } from './services/character-data-fetch.service';
 import { CharacterNavigationService } from './services/character-navigation.service';
 import { PickBackgroundComponent } from './components/character-creation/pick-background/pick-background.component';
+import { ShowBackgroundComponent } from './components/character-information/show-background/show-background.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PickBackgroundComponent } from './components/character-creation/pick-ba
     CharacterCreationComponent,
     CharacterCreationNavigationComponent,
     PickNameLevelComponent,
-    PickBackgroundComponent
+    PickBackgroundComponent,
+    ShowBackgroundComponent
   ],
   imports: [
     BrowserModule,
