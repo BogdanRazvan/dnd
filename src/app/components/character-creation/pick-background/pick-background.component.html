@@ -1,11 +1,9 @@
 <div>
   <div *ngFor="let background of currentBackgroundsTpl">
-      <input type="button" (mouseup)="updateInfo($event.target.value)" value="{{background.name}}">
+    <input type="button" (mouseup)="updateInfo($event.target.value)" value="{{background.name}}">
   </div>
   <div *ngFor="let background of currentBackgroundsTpl">
      <div *ngIf="background.name == currentBackground">
-       Overview: {{background.overview || "none"}}
-      
       <!-- Skills -->
       <div>
         <div>Skills Proficiencies: 
@@ -14,14 +12,11 @@
           </span>
         </div>
         <div *ngIf="background.skills.toolProficiencies">
-          <div *ngFor="let tools of background.skills.toolProficiencies; let i = index;">
-            <input *ngIf="tools.length > 1" type="button" value="Test" (click)="showHideTraits($event.target.value)">
-            <ul>
-              <li *ngFor="let singleTool of tools">
-                  {{singleTool}}
-              </li>
-            </ul> 
-          </div>
+          <ul *ngFor="let tools of background.skills.toolProficiencies; let i = index;">
+            <li *ngFor="let singleTool of tools">
+                {{singleTool}}
+            </li>
+          </ul>
         </div>
         <div>
           <span *ngFor="let language of background.skills.languages; let i = index">
@@ -30,37 +25,31 @@
             <span *ngIf="i != 0">{{language}}</span>
           </span>
         </div>
-        <div>Equipment:  {{background.skills.equipment || "none"}}</div>
-        <div>Gold:  {{background.skills.gold || 0}}</div>
       </div>
 
       <!-- Traits -->
       <div>
         <div *ngIf="background.traits">
-            <div>Trait: {{background.traits.name || "No special traits"}}</div>
-            <div *ngIf="background.traits.trait">
-              <div>Trait name: {{background.traits.trait.name}}</div>
-              <div>                  
-                <span>Trait list:</span>
-                <span *ngFor="let traitInfo of background.traits.trait.traits">
-                  {{traitInfo}}
-                </span></div>
+          <div>Trait: {{background.traits.name || "No special traits"}}</div>
+          <div *ngIf="background.traits.trait">
+            <div>Trait name: {{background.traits.trait.name}}</div>
+            <div>
+              <input type="button" value="{{currentTrait}}" (click)="showHideTraits()"> 
+              <ol *ngIf="displayTraits">
+                <li *ngFor="let traitInfo of background.traits.trait.traits" (mouseup)="selectTrait($event.target.innerText)">{{traitInfo}}</li>
+              </ol>
             </div>
-            <div *ngIf="background.traits.item">
-                <div>Item name: {{background.traits.item.name}}</div>
-                <div>                  
-                  <span>Item list:</span>
-                  <span *ngFor="let itemInfo of background.traits.item.items">
-                    {{itemInfo}}
-                  </span></div>
-              </div>
+          </div>
+          <div *ngIf="background.traits.item">
+            <div>Item name: {{background.traits.item.name}}</div>
+            <div>                  
+              <input type="button" value="{{currentTrait}}" (click)="showHideTraits()"> 
+              <ol *ngIf="displayTraits">
+                <li *ngFor="let itemInfo of background.traits.item.items" (mouseup)="selectTrait($event.target.innerText)">{{itemInfo}}</li>
+              </ol>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Feature -->
-      <div>      
-        <div>Feature: {{background.feature.name || "none"}}</div>
-        <div>{{background.feature.description}}</div>
       </div>
 
       <!-- Characteristics -->

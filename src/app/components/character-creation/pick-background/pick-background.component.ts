@@ -17,12 +17,13 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private currentBackgrounds: Object;
   private currentBackgroundsTpl: Array<Object>;
   private currentBackground: String;
+  private currentTrait: String;
 
   private infoSubscription: Subscription;
   private infoUpdateSubscription: Subscription;
   private backgroundSubscription: Subscription;
 
-  private displayTools: [Boolean] = [true];
+  private displayTraits: Boolean = false;
   private displayCharacteristics: Object = {
     'personality': false,
     'ideals': false,
@@ -50,12 +51,19 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
         this.currentBackgrounds = data['defaultBackgrounds'];
         this.currentBackgroundsTpl = Object.values(this.currentBackgrounds);
       },
+      error => {},
+      () => this.updateTrait()
     );
   }
 
   private updateInfo(value) {
     this.currentInformation.cBackground.value = this.currentBackground = value;
     this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
+    this.updateTrait();
+  }
+
+  private showHideTraits() {
+    this.displayTraits = !this.displayTraits;
   }
 
   private showHideCharacteristics(eventValue) {
@@ -63,9 +71,28 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
     this.displayCharacteristics[eventValue] = !this.displayCharacteristics[eventValue];
   }
 
-  private showHideTraits(eventValue, index) {
-    if (!this.displayTools[index]) { this.displayTools[index] = false; }
-    this.displayTools[index] = !this.displayTools[index];
+  private selectTrait(item) {
+    this.currentTrait = item;
+  }
+
+  private updateTrait(): void {
+    const backgroundKey = this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')];
+    if (backgroundKey.traits) {
+      if (backgroundKey.traits.trait &&
+      backgroundKey.traits.trait.traits.indexOf(this.currentTrait) === -1) {
+        this.currentTrait = this.currentBackgrounds[this.currentBackground.toLowerCase()].traits.trait.traits[Math.floor(Math.random() *
+          this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')].traits.trait.traits.length - 1)];
+        return;
+      }
+
+      if (backgroundKey.traits.item &&
+        backgroundKey.traits.item.items.indexOf(this.currentTrait) === -1) {
+        this.currentTrait = backgroundKey.traits.item.items[Math.floor(Math.random() *
+          backgroundKey.traits.item.items.length - 1)];
+        return;
+      }
+    }
+
   }
 
   ngOnDestroy() {

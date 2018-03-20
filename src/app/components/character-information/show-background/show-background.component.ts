@@ -24,7 +24,7 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
   private infoUpdateSubscription: Subscription;
   private backgroundSubscription: Subscription;
 
-  private displayItems: Object = {
+  private displayCharacteristics: Object = {
     'personality': false,
     'ideals': false,
     'bonds': false,
@@ -51,6 +51,17 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  private updateInfo(value) {
+    this.currentInformation.cBackground.value = this.currentBackground = value;
+    this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
+  }
+
+  private showHideCharacteristics(eventValue) {
+    eventValue = eventValue.toLowerCase();
+    this.displayCharacteristics[eventValue] = !this.displayCharacteristics[eventValue];
+  }
+
 
   ngOnDestroy() {
     this.infoSubscription.unsubscribe();
