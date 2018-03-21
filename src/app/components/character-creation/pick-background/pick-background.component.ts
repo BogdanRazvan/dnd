@@ -18,6 +18,12 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private currentBackgroundsTpl: Array<Object>;
   private currentBackground: String;
   private currentTrait: String;
+  private currentCharacteristics = {
+    currentPersonality: String,
+    currentBond: String,
+    currentFlaw: String,
+    currentIdeal: String
+  };
 
   private infoSubscription: Subscription;
   private infoUpdateSubscription: Subscription;
@@ -25,10 +31,10 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
 
   private displayTraits: Boolean = false;
   private displayCharacteristics: Object = {
-    'personality': false,
-    'ideals': false,
-    'bonds': false,
-    'flaws': false,
+    currentPersonality: false,
+    currentIdeal: false,
+    currentBond: false,
+    currentFlaw: false,
   };
 
   constructor(private characterDataFetchService: CharacterDataFetchService) { }
@@ -37,22 +43,20 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
     this.infoSubscription = this.characterDataFetchService.getInfo().subscribe(
       data => {
         this.currentInformation = data['defaultInformation'];
+        this.currentBackgrounds = data['defaultBackgrounds'];
+      },
+      error => {},
+      () => {
         this.currentBackground = this.currentInformation.cBackground.value;
         this.currentInformationTpl = Object.values(this.currentInformation);
+        this.currentBackgroundsTpl = Object.values(this.currentBackgrounds);
+        this.updateTrait();
+        this.updateCharacteristics();
       }
     );
 
     this.infoUpdateSubscription = this.characterDataFetchService.currentInformationObs.subscribe(
       data => this.currentInformationTpl = data
-    );
-
-    this.backgroundSubscription = this.characterDataFetchService.getInfo().subscribe(
-      data => {
-        this.currentBackgrounds = data['defaultBackgrounds'];
-        this.currentBackgroundsTpl = Object.values(this.currentBackgrounds);
-      },
-      error => {},
-      () => this.updateTrait()
     );
   }
 
@@ -60,6 +64,7 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
     this.currentInformation.cBackground.value = this.currentBackground = value;
     this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
     this.updateTrait();
+    this.updateCharacteristics();
   }
 
   private showHideTraits() {
@@ -67,38 +72,48 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   }
 
   private showHideCharacteristics(eventValue) {
-    eventValue = eventValue.toLowerCase();
     this.displayCharacteristics[eventValue] = !this.displayCharacteristics[eventValue];
   }
 
   private selectTrait(item) {
     this.currentTrait = item;
+    this.showHideTraits();
+  }
+
+  private selectCharacteristic(characteristic, type) {
+    this.currentCharacteristics[type] = characteristic;
+    this.showHideCharacteristics(type);
   }
 
   private updateTrait(): void {
     const backgroundKey = this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')];
     if (backgroundKey.traits) {
-      if (backgroundKey.traits.trait &&
-      backgroundKey.traits.trait.traits.indexOf(this.currentTrait) === -1) {
-        this.currentTrait = this.currentBackgrounds[this.currentBackground.toLowerCase()].traits.trait.traits[Math.floor(Math.random() *
-          this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')].traits.trait.traits.length - 1)];
+      if (backgroundKey.traits.trait && backgroundKey.traits.trait.traits.indexOf(this.currentTrait) === -1) {
+        // Select random trait
+        this.currentTrait = backgroundKey.traits.trait.traits[Math.floor(Math.random() * (backgroundKey.traits.trait.traits.length - 1))];
         return;
       }
 
-      if (backgroundKey.traits.item &&
-        backgroundKey.traits.item.items.indexOf(this.currentTrait) === -1) {
-        this.currentTrait = backgroundKey.traits.item.items[Math.floor(Math.random() *
-          backgroundKey.traits.item.items.length - 1)];
+      if (backgroundKey.traits.item && backgroundKey.traits.item.items.indexOf(this.currentTrait) === -1) {
+        // Select random item
+        this.currentTrait = backgroundKey.traits.item.items[Math.floor(Math.random() * (backgroundKey.traits.item.items.length - 1))];
         return;
       }
     }
+  }
 
+  private updateCharacteristics(): void {
+    const backgroundTraits = this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')].characteristics.traits;
+    this.currentCharacteristics.currentBond = backgroundTraits.bonds[Math.floor(Math.random() * (backgroundTraits.bonds.length - 1))];
+    this.currentCharacteristics.currentFlaw = backgroundTraits.flaws[Math.floor(Math.random() * (backgroundTraits.flaws.length - 1))];
+    this.currentCharacteristics.currentIdeal = backgroundTraits.ideals[Math.floor(Math.random() * (backgroundTraits.ideals.length - 1))];
+    this.currentCharacteristics.currentPersonality =
+    backgroundTraits.personalitys[Math.floor(Math.random() * (backgroundTraits.personalitys.length - 1))];
   }
 
   ngOnDestroy() {
     this.infoSubscription.unsubscribe();
     this.infoUpdateSubscription.unsubscribe();
-    this.backgroundSubscription.unsubscribe();
   }
 
 }
