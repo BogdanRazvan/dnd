@@ -19,16 +19,18 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
 
   private defaultBackgrounds: any;
   private defaultBackgroundsTpl: any;
+  private characterInformation: any;
 
   ngOnInit() {
     this.subscriptionCharacterInfo = this.characterDataFetchService.getInfo().subscribe(
       data => {
+        this.characterInformation = data['defaultInformation'];
         this.defaultBackgrounds = data['defaultBackgrounds'];
         this.defaultBackgroundsTpl = Object.values(this.defaultBackgrounds);
       },
       error => {},
       () => {
-        this.currentSkill = this.defaultBackgrounds['criminal'].skills.skillProficiencies[0];
+        this.currentSkill = this.defaultBackgrounds[this.characterInformation.cBackground.value.toLowerCase()].skills.skillProficiencies[0];
       }
     );
   }
