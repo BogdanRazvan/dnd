@@ -44,7 +44,7 @@ export class CharacterInformationComponent implements OnInit, OnDestroy {
              this.characterInformationTpl[0] = data;
             break;
             case 'Background':
-            this.characterInformationTpl[3] = data;
+              this.characterInformationTpl[3] = data;
            break;
           }
         }

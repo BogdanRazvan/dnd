@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,60 +13,28 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
 
   constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
-  private currentInformation: CharacterInfo;
-  private currentInformationTpl: Array<CharacterInfo>;
+  private subscriptionCharacterInfo: Subscription;
 
-  private currentBackgrounds: Object;
-  private currentBackgroundsTpl: Array<Object>;
-  private currentBackground: String;
+  private currentSkill: String;
 
-  private infoSubscription: Subscription;
-  private infoUpdateSubscription: Subscription;
-  private backgroundSubscription: Subscription;
-
-  private displayCharacteristics: Object = {
-    'personality': false,
-    'ideals': false,
-    'bonds': false,
-    'flaws': false,
-  };
+  private defaultBackgrounds: any;
+  private defaultBackgroundsTpl: any;
 
   ngOnInit() {
-    this.infoSubscription = this.characterDataFetchService.getInfo().subscribe(
+    this.subscriptionCharacterInfo = this.characterDataFetchService.getInfo().subscribe(
       data => {
-        this.currentInformation = data['defaultInformation'];
-        this.currentBackground = this.currentInformation.cBackground.value;
-        this.currentInformationTpl = Object.values(this.currentInformation);
-      }
-    );
-
-    this.infoUpdateSubscription = this.characterDataFetchService.currentInformationObs.subscribe(
-      data => this.currentInformationTpl = data
-    );
-
-    this.backgroundSubscription = this.characterDataFetchService.getInfo().subscribe(
-      data => {
-        this.currentBackgrounds = data['defaultBackgrounds'];
-        this.currentBackgroundsTpl = Object.values(this.currentBackgrounds);
+        this.defaultBackgrounds = data['defaultBackgrounds'];
+        this.defaultBackgroundsTpl = Object.values(this.defaultBackgrounds);
+      },
+      error => {},
+      () => {
+        this.currentSkill = this.defaultBackgrounds['criminal'].skills.skillProficiencies[0];
       }
     );
   }
-
-  private updateInfo(value) {
-    this.currentInformation.cBackground.value = this.currentBackground = value;
-    this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
-  }
-
-  private showHideCharacteristics(eventValue) {
-    eventValue = eventValue.toLowerCase();
-    this.displayCharacteristics[eventValue] = !this.displayCharacteristics[eventValue];
-  }
-
 
   ngOnDestroy() {
-    this.infoSubscription.unsubscribe();
-    this.infoUpdateSubscription.unsubscribe();
-    this.backgroundSubscription.unsubscribe();
+    this.subscriptionCharacterInfo.unsubscribe();
   }
 
 }

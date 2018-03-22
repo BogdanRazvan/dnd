@@ -15,7 +15,8 @@
       },
       "cBackground": {
         "key": "Background", 
-        "value": "Criminal"
+        "value": "Criminal",
+        "trait": "test"
       },
       "cRace": {
         "key": "Race", 

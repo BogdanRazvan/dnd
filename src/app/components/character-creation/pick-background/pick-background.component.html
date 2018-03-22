@@ -9,9 +9,10 @@
       <div>
         <div>Skills Proficiencies: 
           <span *ngFor="let skill of background.skills.skillProficiencies">
-              {{skill || "none"}}
+              {{skill}}
           </span>
         </div>
+        <!-- Skills - Tools -->
         <div *ngIf="background.skills.toolProficiencies">
           <ul *ngFor="let tools of background.skills.toolProficiencies; let i = index;">
             <li *ngFor="let singleTool of tools">
@@ -33,22 +34,16 @@
         <div *ngIf="background.traits">
           <div>Trait: {{background.traits.name || "No special traits"}}</div>
           <div *ngIf="background.traits.trait">
-            <div>Trait name: {{background.traits.trait.name}}</div>
-            <div>
-              <input type="button" value="{{currentTrait}}" (click)="showHideTraits()"> 
-              <ol *ngIf="displayTraits">
-                <li *ngFor="let traitInfo of background.traits.trait.traits" (mouseup)="selectTrait($event.target.innerText)">{{traitInfo}}</li>
-              </ol>
-            </div>
+            <span>Trait name: {{background.traits.trait.name}}</span>
+            <ol><li *ngFor="let traitInfo of background.traits.trait.traits" (mouseup)="selectTrait($event.target.innerText)">
+                {{traitInfo}}
+              </li></ol>
           </div>
           <div *ngIf="background.traits.item">
-            <div>Item name: {{background.traits.item.name}}</div>
-            <div>                  
-              <input type="button" value="{{currentTrait}}" (click)="showHideTraits()"> 
-              <ol *ngIf="displayTraits">
-                <li *ngFor="let itemInfo of background.traits.item.items" (mouseup)="selectTrait($event.target.innerText)">{{itemInfo}}</li>
-              </ol>
-            </div>
+            <span>Item name: {{background.traits.item.name}}</span>
+            <ol><li *ngFor="let itemInfo of background.traits.item.items" (mouseup)="selectTrait($event.target.innerText)">
+              {{itemInfo}}
+            </li></ol>
           </div>
         </div>
       </div>
@@ -57,37 +52,29 @@
       <div>
         <div>Characteristics: {{background.characteristics.description}}</div>
         <div class="dropdown">
-          <input type="button" value="{{currentCharacteristics.currentPersonality}}" (click)="showHideCharacteristics('currentPersonality')"> 
-          <ol *ngIf="displayCharacteristics.currentPersonality">
-            <li *ngFor="let personality of background.characteristics.traits.personalitys; let i = index" (mouseup)="selectCharacteristic($event.target.innerText, 'currentPersonality')">
-              {{personality}}
-            </li>
-          </ol>
+          <span>Personality</span>
+          <ol><li *ngFor="let personality of background.characteristics.traits.personalitys; let i = index" (mouseup)="selectCharacteristic($event.target.innerText)">
+            {{personality}}
+          </li></ol>
           <div></div>
         </div>
         <div>
-          <input type="button" value="{{currentCharacteristics.currentIdeal}}" (click)="showHideCharacteristics('currentIdeal')"> 
-          <ol *ngIf="displayCharacteristics.currentIdeal">
-            <li *ngFor="let ideal of background.characteristics.traits.ideals; let i = index" (mouseup)="selectCharacteristic($event.target.innerText, 'currentIdeal')">
-              {{ideal}}
-            </li>
-          </ol>
+          <span>Ideal</span>
+          <ol><li *ngFor="let ideal of background.characteristics.traits.ideals; let i = index" (mouseup)="selectCharacteristic($event.target.innerText)">
+            {{ideal}}
+          </li></ol>
         </div>
         <div>
-          <input type="button" value="{{currentCharacteristics.currentBond}}" (click)="showHideCharacteristics('currentBond')"> 
-          <ol *ngIf="displayCharacteristics.currentBond">
-            <li  *ngFor="let bond of background.characteristics.traits.bonds; let i = index" (mouseup)="selectCharacteristic($event.target.innerText, 'currentBond')">
-              {{bond}}
-            </li>
-          </ol>
+          <span>Bond</span>
+          <ol><li  *ngFor="let bond of background.characteristics.traits.bonds; let i = index" (mouseup)="selectCharacteristic($event.target.innerText)">
+            {{bond}}
+          </li></ol>
         </div>
         <div>
-          <input type="button" value="{{currentCharacteristics.currentFlaw}}" (click)="showHideCharacteristics('currentFlaw')">  
-          <ol *ngIf="displayCharacteristics.currentFlaw">
-            <li *ngFor="let flaw of background.characteristics.traits.flaws; let i = index" (mouseup)="selectCharacteristic($event.target.innerText, 'currentFlaw')">
-              {{flaw}}
-            </li>
-          </ol>
+          <span>Flaw</span>
+          <ol><li *ngFor="let flaw of background.characteristics.traits.flaws; let i = index" (mouseup)="selectCharacteristic($event.target.innerText)">
+            {{flaw}}
+          </li></ol>
         </div>
 
     </div>
