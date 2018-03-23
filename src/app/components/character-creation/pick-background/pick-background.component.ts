@@ -17,6 +17,7 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
   private currentBackgrounds: Object;
   private currentBackgroundsTpl: Array<Object>;
   private currentBackground: String;
+  private currentSkill: String;
   private currentTrait: String;
   private currentCharacteristics = {
     currentPersonality: String,
@@ -52,7 +53,10 @@ export class PickBackgroundComponent implements OnInit, OnDestroy {
 
   private updateInfo(value) {
     this.currentInformation.cBackground.value = this.currentBackground = value;
-    this.currentInformation.cBackground.trait = this.currentTrait;
+    if (this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')].skills) {
+      this.currentInformation.cBackground.skills =
+      this.currentBackgrounds[this.currentBackground.toLowerCase().replace(/ /g, '_')].skills.skillProficiencies;
+    }
     this.characterDataFetchService.updateInfo(this.currentInformation.cBackground);
   }
 

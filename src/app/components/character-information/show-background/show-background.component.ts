@@ -14,8 +14,9 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
   constructor(private characterDataFetchService: CharacterDataFetchService) { }
 
   private subscriptionCharacterInfo: Subscription;
+  private subscriptionCharacterUpdate: Subscription;
 
-  private currentSkill: String;
+  private currentSkill: Array<String>;
 
   private defaultBackgrounds: any;
   private defaultBackgroundsTpl: any;
@@ -30,8 +31,13 @@ export class ShowBackgroundComponent implements OnInit, OnDestroy {
       },
       error => {},
       () => {
-        this.currentSkill = this.defaultBackgrounds[this.characterInformation.cBackground.value.toLowerCase()].skills.skillProficiencies[0];
+        this.currentSkill =
+        this.defaultBackgrounds[this.characterInformation.cBackground.value.toLowerCase().replace(/ /g, '_')].skills.skillProficiencies;
       }
+    );
+
+    this.subscriptionCharacterUpdate = this.characterDataFetchService.currentInformationObs.subscribe(
+      (data: any) => this.currentSkill = data.skills
     );
   }
 
